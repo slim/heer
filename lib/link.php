@@ -12,7 +12,7 @@
 			$this->id    = $url;
 			$this->title = $title;
 			$this->value = 1;
-			$this->date  = date('U');
+			$this->date  = date('c');
 		}
 
 		public static function get_table_name()
