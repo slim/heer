@@ -1,0 +1,14 @@
+heer. comodity minimalistic opensource social bookmarking
+
+heer is a bookmarklet + a link submission URL + an RSS feed
+
+PREREQUISITE
+
+- PHP5
+- PDO_SQL (should come with PHP5)
+
+INSTALLATION
+
+1- copy the heer tree somewhere in your DocumenRoot
+2- give read/write access on heer.db to everybody (don't forget the parent dir)
+3- change URLs in the home page heer/index.php according to your needs
