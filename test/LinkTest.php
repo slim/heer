@@ -46,7 +46,7 @@ class LinkTest extends UnitTestCase {
 
     function test_select()
     {
-		$result = Link::select("where id='". $this->testId ."'", $this->db);
+		$result = Link::select("where id='". $this->testId ."'");
 		$expected = array($this->testLink);
         $this->assertEqual($expected, $result);
     }

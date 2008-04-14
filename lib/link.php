@@ -89,4 +89,14 @@
 			$query = "select * from $table $options";
 			return $query;
 		}
+
+		public function toRSSitem()
+		{
+			$rss  = '';
+			$rss .= '<item>';
+			$rss .= '<title>'. $this->title .'</title>';
+			$rss .= '<link>'. $this->id .'</link>';
+			$rss .= '</item>';
+			return $rss;
+		}
 	}
