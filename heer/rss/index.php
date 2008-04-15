@@ -4,7 +4,9 @@
 
 	Link::set_db('sqlite:../../heer.db');
 
-	$links = Link::select();
+	$maxItems = $_GET['l'] ? $_GET['l'] : 25;
+
+	$links = Link::select("order by date desc limit $maxItems");
 	foreach ($links as $l) {
 		echo $l->toRSSitem();
 	}
