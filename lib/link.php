@@ -10,7 +10,7 @@
 		function __construct($url, $title = NULL)
 		{
 			$this->id    = $url;
-			$this->title = $title;
+			$this->title = stripslashes($title);
 			$this->value = 1;
 			$this->date  = date('c');
 		}
@@ -24,7 +24,7 @@
 		{
 			$table = self::get_table_name();
 			$id    = $this->id;
-			$title = $this->title;
+			$title = str_replace("'", "''", $this->title);
 			$value = $this->value;
 			$date  = $this->date;
 			$query = "insert into $table (id, title, value, date) values ('$id', '$title', '$value', '$date')";
@@ -77,7 +77,7 @@
 					$query = $this->toSQLinsert();
 					$db->exec($query);
 				} else {
-					die($e->getMessage());
+					die($e->getMessage() .' [<b>'.  $query .'</b>]');
 				}
 			}
 			return $this;
