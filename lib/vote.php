@@ -37,7 +37,7 @@
 			$table = self::get_table_name();
 			$id    = $this->id;
 			$uri   = $this->uri;
-			$user  = $this->date;
+			$user  = $this->user;
 			$date  = date('c');
 			$query = "insert into $table (id, uri, user, date) values ('$id', '$uri', '$user', '$date')";
 			return $query;
