@@ -16,6 +16,7 @@ class LinkTest extends UnitTestCase {
 		$this->testLink  = new Link($this->testId, "in the test db");
 		$this->testLink->value = 55;
 		$this->testLink->date = "2008-04-14 11:20";
+		$this->testLink2 = new Link($this->testId, "in the test db");
 
 		Link::set_db($this->db);
     }
@@ -71,7 +72,28 @@ class LinkTest extends UnitTestCase {
         $this->assertEqual($expected, $count);
 		$secondSaveValue = $rows[0]['value'];
         $this->assertEqual($firstSaveValue + 1, $secondSaveValue);
+
+		$this->Link->save(); // save a third time
+		$result = $this->db->query("select value from link where id='$id'");
+		$rows = $result->fetchAll(PDO::FETCH_ASSOC);
+		$thirdSaveValue = $rows[0]['value'];
+        $this->assertEqual($firstSaveValue + 2, $thirdSaveValue);
     }
+
+	function test_delete()
+	{
+		$this->testLink->delete();
+		$result = Link::select("where id='". $this->testId ."'");
+		$expected = array();
+        $this->assertEqual($expected, $result);
+		$this->testLink->save();
+	}
+
+	function test_load()
+	{
+		$this->testLink2->load();
+        $this->assertEqual(55, $this->testLink2->value);
+	}
 
 }
 // Running the test.
