@@ -62,6 +62,26 @@
 			return self::$db;
 		}
 
+		function delete($db = NULL)
+		{
+			if (!$db) $db =& self::$db;
+			$id = $this->id;
+			$table = self::get_table_name();
+			$db->exec("delete from $table where id='$id'");
+
+			return $this;
+		}
+
+		function load($db = NULL)
+		{
+			if (!$db) $db =& self::$db;
+			$id = $this->id;
+			list($link) = Link::select("where id='$id'", $db);
+			$this->value = $link->value;
+
+			return $this;
+		}
+
 		function save($db = NULL)
 		{
 			if (!$db) $db =& self::$db;
@@ -72,8 +92,9 @@
 				$db->exec($query);
 			} catch (PDOException $e) {
 				if ($db->errorCode() == "23000") { // l'id existe dans la table
-					$db->exec("delete from $table where id='$id'");
+					$this->load();
 					$this->value++;
+					$this->delete();
 					$query = $this->toSQLinsert();
 					$db->exec($query);
 				} else {
