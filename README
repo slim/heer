@@ -6,6 +6,7 @@ PREREQUISITE
 
 - PHP5
 - PDO_SQL (should come with PHP5)
+- allow_url_fopen must be set in php.ini
 
 INSTALLATION
 
