@@ -12,6 +12,9 @@
 	$title       = $_GET['t'];
 	$bookmarklet = new ID($_GET['i']);
 	$vote        = new Vote($url, $bookmarklet);
+	if ($_GET['n']) {
+		$vote->note = $_GET['n'];
+	}
 
 	$link = new Link($url, $title);
 	if ($bookmarklet->isAuthentic() && $vote->save()) {

@@ -2,7 +2,7 @@
 	class Vote
 	{
 		static $db;
-		public $id, $uri, $user;
+		public $id, $uri, $user, $note;
 
 		function __construct($uri, $user)
 		{
@@ -39,7 +39,13 @@
 			$uri   = $this->uri;
 			$user  = $this->user;
 			$date  = date('c');
-			$query = "insert into $table (id, uri, user, date) values ('$id', '$uri', '$user', '$date')";
+			if (isset($this->note)) {
+				$note = "'". $this->note ."'";
+			}
+			else {
+				$note = "NULL";
+			}
+			$query = "insert into $table (id, uri, user, date, note) values ('$id', '$uri', '$user', '$date', $note)";
 			return $query;
 		}
 
