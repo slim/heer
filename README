@@ -13,3 +13,4 @@ INSTALLATION
 1- copy the heer tree somewhere in your DocumenRoot
 2- give read/write access on heer.db to everybody (don't forget the parent dir)
 3- change URLs in the home page heer/index.php according to your needs
+4- change the seed string in the seed file (your pet's name would be a good choice)
